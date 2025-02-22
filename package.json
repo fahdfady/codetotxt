@@ -1,0 +1,27 @@
+{
+    "name": "codetotxt",
+    "version": "0.0.1",
+    "description": "Merge codebase into a single file for LLM processing",
+    "main": "dist/index.js",
+    "bin": {
+        "codetotxt": "dist/cli.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js"
+    },
+    "keywords": [
+        "code",
+        "merge",
+        "llm"
+    ],
+    "author": "fahdfady",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^5.4.1"
+    },
+    "devDependencies": {
+        "@types/node": "^20.3.1",
+        "typescript": "^5.0.4"
+    }
+}
