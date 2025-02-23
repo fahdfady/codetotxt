@@ -43,20 +43,19 @@ export async function mergeFiles(options: MergeOptions): Promise<void> {
     } catch (error) {
         throw new Error(`Input directory not found: ${inputDir}`);
     }
+    const files: string[] = await getFiles(inputDir, finalIgnoreList);
+    let mergedContent: string = '';
 
-    try {
-        const files = await getFiles(inputDir, finalIgnoreList);
-        const fileContents = await Promise.all(files.map(async (file) => {
-            const ext = path.extname(file);
-            if (ignoreExtensions.includes(ext)) {
-                return '';
-            }
-            return await fs.readFile(file, 'utf-8');
-        }));
-        await fs.writeFile(outputFile, fileContents.join('\n'));
-        console.log(`Merged ${files.length} files into ${outputFile}`);
-
-    } catch (error) {
-        console.error(chalk.red(`Error merging files: ${error}`));
+    for (const file of files) {
+        try {
+            const data = await fs.readFile(file, 'utf-8');
+            mergedContent += `\n\n--- File: ${file} ---\n`;
+            mergedContent += data;
+        } catch (error) {
+            console.error(chalk.red(`Error merging file ${file}: ${error}`));
+        }
     }
+
+    await fs.writeFile(outputFile, mergedContent, 'utf-8');
+    console.log(chalk.green(`Merged ${files.length} files into ${outputFile}`));
 }
