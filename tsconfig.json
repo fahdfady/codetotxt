@@ -1,8 +1,9 @@
 {
     "compilerOptions": {
-        "target": "ES2024",
+        "target": "ESNext",
         "module": "CommonJS",
         "strict": true,
+        "esModuleInterop": true,
 
         "outDir": "dist",
         "rootDir": "src",
