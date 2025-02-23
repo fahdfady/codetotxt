@@ -18,7 +18,8 @@
     "author": "fahdfady",
     "license": "MIT",
     "dependencies": {
-        "chalk": "^5.4.1"
+        "chalk": "^5.4.1",
+        "commander": "^13.1.0"
     },
     "devDependencies": {
         "@types/node": "^20.3.1",
